@@ -88,11 +88,14 @@ uv run pytest ../aml-tutor/tests/002_test_data_loading.py
 
 ## Pressure test
 
-`load_transactions` makes no promise about row order — it returns whatever order `pd.read_csv`
-produced, which is the file's order, unsorted by anything in particular. Lesson 003 builds a
-time-based train/test split on top of this DataFrame, and a time-based split silently assumes the
-rows are in a meaningful order with respect to `step`. If that assumption is wrong — say, the
-sampling command in this lesson shuffled the rows, which `df.sample` does — lesson 003's split will
-still run without error, just on the wrong rows. That failure will look like a bug in the split
-logic, not in the loading step that actually caused it, because nothing here checks or documents
-what order the DataFrame comes back in.
+`load_transactions` coerces numeric columns to explicit dtypes, but `step` — the column lesson
+003's entire split depends on — is exactly the kind of column that can silently come back as the
+wrong dtype: one stray blank or non-numeric value in the source CSV is enough for `pd.read_csv` to
+infer `object` (string) instead of an integer. If `load_transactions` didn't catch that, lesson
+003's `temporal_split` would still run without error — `df[df["step"] <= split_step]` is valid on
+strings too — but the comparison would be lexicographic, not numeric: `"9" <= "10"` is `False`
+under string comparison even though `9 <= 10` is `True` under integer comparison. Rows would land
+on the wrong side of the boundary in ways that don't show up as a crash, just as a split that's
+subtly wrong. That failure would look like a bug in the split logic, not in the loading step that
+actually caused it, because it traces back to a dtype `load_transactions` never validated. This is
+exactly why lesson 002's dtype checks have to happen here, before lesson 003 ever runs.
