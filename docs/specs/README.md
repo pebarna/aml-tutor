@@ -17,5 +17,5 @@ local progress store, not in this table.
 | [003](003-time-based-split.md) | Time-based train/test split | Done |
 | [004](004-feature-engineering.md) | Feature engineering | Done |
 | [005](005-class-imbalance.md) | Class imbalance handling | Done |
-| [006](006-train-the-baseline.md) | Train the XGBoost baseline | Todo — blocked on the PaySim CSV fixture |
+| [006](006-train-the-baseline.md) | Train the XGBoost baseline | Done |
 | [007](007-evaluation-and-threshold.md) | Evaluation and threshold selection | Todo — blocked on the PaySim CSV fixture |
