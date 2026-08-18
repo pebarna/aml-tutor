@@ -13,10 +13,11 @@ transaction at step 10 gets to see what the world looked like at step 40. Traini
 model look better than it can possibly be at decision time, and the gap between that inflated
 score and real performance only shows up after deployment, when it is expensive.
 
-`step` is PaySim's clock: it counts hours since the simulation started, 1 through 743 across the
-roughly 31-day (744-hour) run the dataset represents — confirmed against the real
-`paysim_sample.csv` from lesson 002, not just the fixture's own carved-down window of steps 1–50.
-A time-based split respects that clock: everything at or before some boundary step is "the past"
+`step` is PaySim's clock: it counts hours since the simulation started, 1 through 743, per the
+dataset's own documentation (the Kaggle listing for "Synthetic Financial Datasets For Fraud
+Detection" and the underlying PaySim paper) — a 744-hour, roughly 31-day run, and a materially
+wider range than the fixture's own carved-down window of steps 1–50. A time-based split respects
+that clock: everything at or before some boundary step is "the past"
 (train), everything strictly after it is "the future" (test). That mirrors the real deployment
 question — given only what was known up to a point in time, how well does the model do on what
 comes next?
@@ -43,6 +44,17 @@ prevent.
    step 26 lands in train and the first test row is step 27. Your real run should choose a boundary
    the same way: a step value that appears in your sample, near wherever you want the train/test
    proportions to land, not a number picked in the abstract.
+
+### If you ask the tutor to do this step for you
+
+Unlike lesson 001's `uv init` or lesson 002's Kaggle download, nothing here requires a shell or a
+file the doer can't see — `temporal_split` is a small pure function with a signature already fixed
+by this spec. If asked, the doer writes `src/aml_triage/split.py` by hand: the `<=`/`>` partition
+on `step`, `.reset_index(drop=True)` on both halves, and the `(train_df, test_df)` return order,
+matching the signature above exactly. It does **not** choose `split_step` for you — that value
+depends on your own sample's step range and the train/test proportions you want, which the doer has
+no way to inspect, so it leaves the call site's `split_step` argument to you and the baked-in check
+below verifies whatever value you pass against the tutorial's own fixture.
 
 ## Checks
 
