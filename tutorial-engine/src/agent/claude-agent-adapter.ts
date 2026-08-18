@@ -295,6 +295,15 @@ export class ClaudeTutorialAdapter {
   #runningTools = new Map<string, string>();
   #batch: string[] = [];
   #respondingMessages = new Set<string>();
+  /**
+   * The SDK mints a fresh `uuid` on every `stream_event` envelope — it identifies
+   * that one streaming chunk, not the assistant turn it belongs to (unlike Pi's
+   * `message.id`, which stayed stable across a whole turn). Minting our own id
+   * from the first delta of a turn and reusing it for every later delta plus the
+   * final `assistant-message` is what lets the browser append into one bubble
+   * instead of opening a new one per chunk.
+   */
+  #currentStreamMessageId: string | undefined;
   #eventLoop!: Promise<void>;
 
   private constructor(readonly lesson: LessonDefinition, readonly workspace: string, roots: TutorialRoots, bus: TutorialEventBus, private readonly log: TutorialLogger) {
@@ -533,13 +542,13 @@ export class ClaudeTutorialAdapter {
     if (message.type === "stream_event") {
       const event = message.event as { type?: string; delta?: { type?: string; text?: string } };
       if (event.type === "content_block_delta" && event.delta?.type === "text_delta" && typeof event.delta.text === "string") {
-        const messageId = message.uuid;
-        if (!this.#respondingMessages.has(messageId)) {
-          this.#respondingMessages.add(messageId);
+        if (!this.#currentStreamMessageId) {
+          this.#currentStreamMessageId = message.uuid;
+          this.#respondingMessages.add(this.#currentStreamMessageId);
           this.setActivity("receiving the tutor's response");
           this.log.info("Tutor started responding.");
         }
-        this.#bus.publish({ type: "assistant-delta", messageId, delta: event.delta.text });
+        this.#bus.publish({ type: "assistant-delta", messageId: this.#currentStreamMessageId, delta: event.delta.text });
       }
       return;
     }
@@ -547,9 +556,11 @@ export class ClaudeTutorialAdapter {
       const content = (message.message as { content?: Array<{ type: string; text?: string }> }).content ?? [];
       const markdown = content.filter((item) => item.type === "text").map((item) => item.text ?? "").join("");
       if (markdown) {
-        this.#respondingMessages.delete(message.uuid);
+        const messageId = this.#currentStreamMessageId ?? message.uuid;
+        this.#respondingMessages.delete(messageId);
+        this.#currentStreamMessageId = undefined;
         this.log.info(`Tutor completed a response (${markdown.length} characters).`);
-        this.#bus.publish({ type: "assistant-message", messageId: message.uuid, markdown });
+        this.#bus.publish({ type: "assistant-message", messageId, markdown });
       }
       return;
     }
