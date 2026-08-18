@@ -1,0 +1,9 @@
+**/node_modules/
+**/dist/
+*.log
+*.swp
+
+# The engine's own bookkeeping for one learner's run — lesson progress and the
+# saved browser transcript. Never the learner's real code, which lives in the
+# sibling ../aml-triage repository, not here.
+.tutorial-state/

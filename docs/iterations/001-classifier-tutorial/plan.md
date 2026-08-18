@@ -5,7 +5,7 @@
 Build an interactive, step-by-step tutorial that teaches the user (strong SWE
 background, new to Python data tooling and applied ML) to build Phase 1 of the
 AML/fraud triage project — the PaySim-based XGBoost classifier
-described in `~/projects/aml-triage/SEED.md` — from scratch, in their own
+described in `~/projects/aml-tutor/SEED.md` — from scratch, in their own
 `aml-triage` repo. It reuses the teaching pattern (not the content) of
 `~/projects/software-factory-tutorial`: a browser-led tutor that infers
 lessons from `README.md` + `docs/specs/*.md`, asks comprehension questions
@@ -136,10 +136,10 @@ inline note so every later phase has a single source of truth:
    (the directory containing `README.md` and `docs/specs/`), not the shell's
    process cwd. This is required so `uv run pytest ...` executes inside
    `../aml-triage` while the test file path remains in `aml-tutor/tests/`.
-7. Rewrite `src/lesson/system-prompt.ts` (or equivalent) to replace
-   calculator-specific framing (Kent Beck rules, `factory/refactor/success.md`,
-   `pi` command references) with AML/`uv`/pytest framing and the target learner
-   profile.
+7. Rewrite the system-prompt logic inside `src/agent/pi-adapter.ts` (there is
+   no separate `system-prompt.ts`) to replace calculator-specific framing
+   (Kent Beck rules, `factory/refactor/success.md`, `pi` command references)
+   with AML/`uv`/pytest framing and the target learner profile.
 8. Rewrite `scripts/setup.mjs` to check the Claude Agent SDK's supported
    credential mode and tool-permission readiness instead of Pi's `/login` state.
    Pin the SDK version and the exact auth mechanism (e.g. API key env var or
@@ -265,7 +265,7 @@ tutor model in conversation; this is the deliberate separation between
 - Lesson 007 produces or saves a report artifact (e.g. threshold, metrics, model
   path) in `aml-triage` so the Phase 1 stopping point is a concrete, defensible
   deliverable.
-- `aml-triage/SEED.md`'s Phase 1 "stopping point" is satisfied: a real,
+- `aml-tutor/SEED.md`'s Phase 1 "stopping point" is satisfied: a real,
   defensible classifier exists even if nothing further is built.
 
 ## Open risks / watch items
