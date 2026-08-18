@@ -51,7 +51,13 @@ rule excludes anything about the test split's composition.
    never on the test split or the whole, unsplit DataFrame. This function itself has no way to
    enforce that; it trusts whatever `Series` it's handed, so the discipline lives in the calling
    code, same as lesson 004's leakage rules live in what `add_features` chooses to keep, not in a
-   check `add_features` performs on its caller.
+   check `add_features` performs on its caller. Computing the weight from the test split's class
+   balance instead would leak information into training the same way lesson 003 warned about, just
+   applied to a different quantity: the test split's positive/negative counts are only knowable
+   because you already hold the labels for data the model hasn't been evaluated on yet, and feeding
+   that count into how the model is trained — rather than treating it as something only revealed
+   once training and evaluation are both done — is the same category of leak lesson 003 named for
+   raw feature values, not a new kind of mistake.
 
 ### If you ask the tutor to do this step for you
 
