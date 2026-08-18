@@ -13,7 +13,7 @@ local progress store, not in this table.
 | Lesson | Goal | Status |
 | --- | --- | --- |
 | [001](001-project-setup.md) | Project setup — `uv`, package layout, dependencies | Done |
-| [002](002-load-and-explore-the-data.md) | Load and explore the data | Todo — blocked on the PaySim CSV fixture, see `docs/ARCHITECTURE.md` |
+| [002](002-load-and-explore-the-data.md) | Load and explore the data | Done |
 | [003](003-time-based-split.md) | Time-based train/test split | Todo — blocked on the PaySim CSV fixture |
 | [004](004-feature-engineering.md) | Feature engineering | Todo — blocked on the PaySim CSV fixture |
 | [005](005-class-imbalance.md) | Class imbalance handling | Todo — blocked on the PaySim CSV fixture |
