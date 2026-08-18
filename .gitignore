@@ -2,6 +2,8 @@
 **/dist/
 *.log
 *.swp
+__pycache__/
+*.pyc
 
 # The engine's own bookkeeping for one learner's run — lesson progress and the
 # saved browser transcript. Never the learner's real code, which lives in the
