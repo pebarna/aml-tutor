@@ -48,7 +48,7 @@ describe("loadLesson", () => {
     ]);
   });
 
-  it("loads this repository's own real ledger and lesson 001's baked-in check, without part grouping", async () => {
+  it("loads this repository's own real ledger and every lesson's baked-in check, without part grouping", async () => {
     // A guard against the loader and the real lesson content drifting apart —
     // not new curriculum content, which is Phase B/C's to write.
     const loaded = await loadLesson(realTutorialRoot);
@@ -56,7 +56,13 @@ describe("loadLesson", () => {
     expect(loaded.progress[0]).toEqual({ id: "orientation", label: "Orientation", state: "done" });
     expect(loaded.progress.slice(1).map((item) => item.id)).toEqual(["001", "002", "003", "004", "005", "006", "007"]);
     expect(loaded.definition.validationCommands).toEqual([
-      { id: "001-project-setup", label: "Project setup", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/001_test_project_setup.py"], cwd: "../aml-triage" }
+      { id: "001-project-setup", label: "Project setup", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/001_test_project_setup.py"], cwd: "../aml-triage" },
+      { id: "002-load-and-explore-the-data", label: "Load and explore the data", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/002_test_data_loading.py"], cwd: "../aml-triage" },
+      { id: "003-time-based-split", label: "Time-based split", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/003_test_time_based_split.py"], cwd: "../aml-triage" },
+      { id: "004-feature-engineering", label: "Feature engineering", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/004_test_feature_engineering.py"], cwd: "../aml-triage" },
+      { id: "005-class-imbalance", label: "Class imbalance", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/005_test_class_imbalance.py"], cwd: "../aml-triage" },
+      { id: "006-train-the-baseline", label: "Train the baseline", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/006_test_train_baseline.py"], cwd: "../aml-triage" },
+      { id: "007-evaluation-and-threshold", label: "Evaluation and threshold", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/007_test_evaluation.py"], cwd: "../aml-triage" }
     ]);
   });
 });
