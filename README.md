@@ -98,8 +98,6 @@ project.
 ## Lesson ledger
 
 See [`docs/specs/README.md`](docs/specs/README.md) for the full lesson list and authoring status.
-As of this writing, lessons 002–007 are paused pending a real PaySim CSV to carve fixtures from —
-see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)'s "Known gap" section.
 
 ## Inspiration
 

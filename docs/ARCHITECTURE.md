@@ -1,6 +1,9 @@
-# Architecture contract — Iteration 001
+# Architecture contract
 
-Pinned before Phase A touches the engine, per `docs/iterations/001-classifier-tutorial/plan.md`.
+Pinned before Phase A touches the engine, per `docs/iterations/001-classifier-tutorial/plan.md`,
+and since extended by iteration 002 (`docs/iterations/002-classifier-lessons/plan.md`) and
+iteration 003 (`docs/iterations/003-triage-and-eval-lessons/plan.md`) — a living contract, not a
+one-iteration artifact.
 
 ## 1. Test ownership
 
@@ -76,4 +79,12 @@ Each lesson produces one small, named public function in `aml-triage/src/aml_tri
 | 005 | `imbalance.compute_scale_pos_weight` | `(y) -> float` |
 | 006 | `model.train_baseline` | `(X_train, y_train, weight) -> fitted XGBoost` |
 | 007 | `evaluate.report` | `(y_true, scores, objective) -> metrics + threshold` |
+| 008 | `retrieval.top_k_typologies` | `(query, k=3, corpus_path=None) -> list[dict]` |
+| 009 | `retrieval.top_k_typologies_hybrid` | `(query, k=3, corpus_path=None, alpha=0.5) -> list[dict]` |
+| 010 | `triage_schema.TRIAGE_TOOL_SCHEMA` / `build_prompt` / `parse_triage_decision` | `(transaction, classifier_score, retrieved) -> str` / `(tool_input, known_typology_ids) -> dict` |
+| 011 | `triage.triage` | `(transaction, classifier_score, *, client=None, k=3, corpus_path=None, alpha=0.5) -> dict`, returns `{decision, rationale, cited_typology_ids, retrieved}` |
+| 012 | `eval.load_eval_set` | `(path) -> list[dict]` |
+| 013 | `eval.deterministic_score` | `(case, result) -> dict` |
+| 014 | `eval.llm_judge_score` | `(result, *, client=None) -> dict` — reads `result["retrieved"]` |
+| 015 | `eval.report` | `(cases, results, deterministic_scores, judge_scores) -> dict` (not to be confused with `evaluate.report`, lesson 007 — same name, distinct module, unrelated signature) |
 
