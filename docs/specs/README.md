@@ -23,3 +23,4 @@ local progress store, not in this table.
 | [009](009-hybrid-retrieval.md) | Hybrid retrieval (embeddings + blending) | Done |
 | [010](010-structured-triage-decisions.md) | Structured triage decisions | Done |
 | [011](011-the-triage-agent.md) | The end-to-end triage agent | Done |
+| [012](012-the-hand-labeled-eval-set.md) | The hand-labeled triage eval set | Done |
