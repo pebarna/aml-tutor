@@ -25,3 +25,4 @@ local progress store, not in this table.
 | [011](011-the-triage-agent.md) | The end-to-end triage agent | Done |
 | [012](012-the-hand-labeled-eval-set.md) | The hand-labeled triage eval set | Done |
 | [013](013-deterministic-triage-checks.md) | Deterministic triage checks | Done |
+| [014](014-llm-as-judge.md) | LLM-as-judge scoring | Done |
