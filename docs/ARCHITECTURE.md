@@ -77,10 +77,3 @@ Each lesson produces one small, named public function in `aml-triage/src/aml_tri
 | 006 | `model.train_baseline` | `(X_train, y_train, weight) -> fitted XGBoost` |
 | 007 | `evaluate.report` | `(y_true, scores, objective) -> metrics + threshold` |
 
-## Known gap (as of this writing)
-
-Phase C (lessons 002–007) needs a real, small, deterministic slice of the PaySim CSV to carve
-fixtures from. Neither `aml-triage/data/` nor anywhere else in this checkout has that CSV, and
-`aml-triage/SEED.md` (which `aml-tutor/SEED.md` names as the source for the Phase 1 project
-description) does not exist either. Phase C is paused until the CSV (and ideally that SEED.md) are
-supplied — see the iteration plan's Phase C task for tracking.
