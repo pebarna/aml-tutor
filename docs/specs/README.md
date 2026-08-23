@@ -24,3 +24,4 @@ local progress store, not in this table.
 | [010](010-structured-triage-decisions.md) | Structured triage decisions | Done |
 | [011](011-the-triage-agent.md) | The end-to-end triage agent | Done |
 | [012](012-the-hand-labeled-eval-set.md) | The hand-labeled triage eval set | Done |
+| [013](013-deterministic-triage-checks.md) | Deterministic triage checks | Done |
