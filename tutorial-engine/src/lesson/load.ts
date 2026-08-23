@@ -20,9 +20,10 @@ function titleFrom(readme: string, workspace: string): string {
  * A row is a lesson when its first cell links to a specification, which no
  * header or separator row does. The ledger carries no per-learner status: how
  * far one learner has got is held in the engine's own state directory, not in
- * the curriculum. This tutorial's ledger is a single flat list — there is no
- * "Part 1 / Part 2" split, so a row is recognised the same way whether or not
- * any other prose precedes it.
+ * the curriculum. The ledger can be organised into "Part 1 / Part 2" headed
+ * sections for readability, but this loader flattens all of it into a single
+ * list — a row is recognised the same way whether or not Part headings or any
+ * other prose precede it.
  */
 const LESSON_LINK = /^\[([^\]]+)\]\(([^)]+)\)$/;
 

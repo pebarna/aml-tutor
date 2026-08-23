@@ -21,7 +21,7 @@ async function tempWorkspace(): Promise<string> {
 }
 
 describe("loadLesson", () => {
-  it("infers the tutorial from its README and ledger, with no part grouping", async () => {
+  it("infers the tutorial from its README and ledger", async () => {
     const loaded = await loadLesson(fixture);
     expect(loaded.definition.title).toBe("Fixture tutorial");
     expect(loaded.workspace).toBe(fixture);
@@ -48,7 +48,7 @@ describe("loadLesson", () => {
     ]);
   });
 
-  it("loads this repository's own real ledger and every lesson's baked-in check, without part grouping", async () => {
+  it("loads this repository's own real ledger and every lesson's baked-in check, flattening the ledger's Part 1/2/3 grouping", async () => {
     // A guard against the loader and the real lesson content drifting apart —
     // not new curriculum content, which is Phase B/C's to write.
     const loaded = await loadLesson(realTutorialRoot);
