@@ -19,3 +19,13 @@ def split_step():
     if not match:
         raise RuntimeError("Could not find the split-boundary step in PROVENANCE.md")
     return int(match.group(1))
+
+
+@pytest.fixture(scope="session")
+def typologies_path():
+    return FIXTURES_DIR / "typologies.json"
+
+
+@pytest.fixture(scope="session")
+def eval_candidates_path():
+    return FIXTURES_DIR / "triage_eval_candidates.jsonl"

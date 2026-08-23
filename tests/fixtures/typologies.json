@@ -1,0 +1,32 @@
+[
+  {
+    "id": "TY-001",
+    "title": "Structuring / smurfing",
+    "text": "A large sum is broken into several smaller transfers, often just under a reporting or scrutiny threshold, to avoid drawing attention to the total amount actually moved."
+  },
+  {
+    "id": "TY-002",
+    "title": "Mule account layering",
+    "text": "Funds are routed through an intermediary account controlled by a third party shortly before being cashed out or moved onward, adding a layer between the original source and the eventual destination of the money."
+  },
+  {
+    "id": "TY-003",
+    "title": "Rapid pass-through",
+    "text": "An account receives funds and moves them onward, by transfer or cash-out, within a very short window, leaving little or no residual balance and little time for the transaction to be reviewed before the money is gone."
+  },
+  {
+    "id": "TY-004",
+    "title": "Round-tripping",
+    "text": "Funds are sent out through one or more intermediary accounts and eventually return to an account associated with the original sender, giving the appearance of unrelated activity while the money never really left the sender's control."
+  },
+  {
+    "id": "TY-005",
+    "title": "Cash-out concentration",
+    "text": "A disproportionate share of an account's outbound activity is cash withdrawal rather than transfer or payment, consistent with converting proceeds into a form that is hard to trace once it leaves the financial system."
+  },
+  {
+    "id": "TY-006",
+    "title": "Dormant account reactivation",
+    "text": "An account with little or no prior activity suddenly originates or receives a large transaction, consistent with an account that sat unused until it was needed for a single laundering event."
+  }
+]

@@ -1,0 +1,16 @@
+{"transaction": {"step": 43.0, "type": "TRANSFER", "amount": 350789.59, "oldbalanceOrg": 350789.59, "newbalanceOrig": 0.0, "oldbalanceDest": 0.0, "newbalanceDest": 276871.71}, "classifier_score": 0.95}
+{"transaction": {"step": 13.0, "type": "CASH_OUT", "amount": 408.0, "oldbalanceOrg": 408.0, "newbalanceOrig": 0.0, "oldbalanceDest": 898297.85, "newbalanceDest": 1075854.14}, "classifier_score": 0.95}
+{"transaction": {"step": 26.0, "type": "CASH_OUT", "amount": 369186.87, "oldbalanceOrg": 369186.87, "newbalanceOrig": 0.0, "oldbalanceDest": 36224.11, "newbalanceDest": 405410.97}, "classifier_score": 0.95}
+{"transaction": {"step": 6.0, "type": "TRANSFER", "amount": 25975.86, "oldbalanceOrg": 25975.86, "newbalanceOrig": 0.0, "oldbalanceDest": 0.0, "newbalanceDest": 0.0}, "classifier_score": 0.95}
+{"transaction": {"step": 28.0, "type": "TRANSFER", "amount": 491517.77, "oldbalanceOrg": 491517.77, "newbalanceOrig": 0.0, "oldbalanceDest": 0.0, "newbalanceDest": 0.0}, "classifier_score": 0.95}
+{"transaction": {"step": 46.0, "type": "TRANSFER", "amount": 736370.54, "oldbalanceOrg": 736370.54, "newbalanceOrig": 0.0, "oldbalanceDest": 0.0, "newbalanceDest": 0.0}, "classifier_score": 0.95}
+{"transaction": {"step": 25.0, "type": "CASH_OUT", "amount": 8383.17, "oldbalanceOrg": 8383.17, "newbalanceOrig": 0.0, "oldbalanceDest": 6577262.64, "newbalanceDest": 6585645.81}, "classifier_score": 0.95}
+{"transaction": {"step": 14.0, "type": "TRANSFER", "amount": 65488.05, "oldbalanceOrg": 65488.05, "newbalanceOrig": 0.0, "oldbalanceDest": 0.0, "newbalanceDest": 0.0}, "classifier_score": 0.95}
+{"transaction": {"step": 42.0, "type": "CASH_OUT", "amount": 189225.42, "oldbalanceOrg": 113334.0, "newbalanceOrig": 0.0, "oldbalanceDest": 1000309.24, "newbalanceDest": 1358382.96}, "classifier_score": 0.05}
+{"transaction": {"step": 14.0, "type": "PAYMENT", "amount": 11937.11, "oldbalanceOrg": 400728.88, "newbalanceOrig": 388791.77, "oldbalanceDest": 0.0, "newbalanceDest": 0.0}, "classifier_score": 0.05}
+{"transaction": {"step": 21.0, "type": "CASH_OUT", "amount": 142109.41, "oldbalanceOrg": 217.0, "newbalanceOrig": 0.0, "oldbalanceDest": 90937.27, "newbalanceDest": 233046.69}, "classifier_score": 0.05}
+{"transaction": {"step": 10.0, "type": "CASH_IN", "amount": 368550.05, "oldbalanceOrg": 200147.54, "newbalanceOrig": 568697.58, "oldbalanceDest": 3295700.69, "newbalanceDest": 2927150.64}, "classifier_score": 0.05}
+{"transaction": {"step": 22.0, "type": "CASH_OUT", "amount": 97644.83, "oldbalanceOrg": 0.0, "newbalanceOrig": 0.0, "oldbalanceDest": 482549.65, "newbalanceDest": 580194.49}, "classifier_score": 0.05}
+{"transaction": {"step": 43.0, "type": "CASH_OUT", "amount": 261262.11, "oldbalanceOrg": 219795.0, "newbalanceOrig": 0.0, "oldbalanceDest": 108153.28, "newbalanceDest": 369415.39}, "classifier_score": 0.05}
+{"transaction": {"step": 20.0, "type": "CASH_OUT", "amount": 74435.5, "oldbalanceOrg": 30950.0, "newbalanceOrig": 0.0, "oldbalanceDest": 4015514.01, "newbalanceDest": 4089949.51}, "classifier_score": 0.05}
+{"transaction": {"step": 15.0, "type": "CASH_IN", "amount": 525144.17, "oldbalanceOrg": 25255.0, "newbalanceOrig": 550399.17, "oldbalanceDest": 19583.62, "newbalanceDest": 0.0}, "classifier_score": 0.05}
