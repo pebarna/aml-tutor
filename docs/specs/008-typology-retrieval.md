@@ -71,6 +71,13 @@ friction. Lesson 009 adds the embedding half this lesson deliberately leaves out
    writes their own `retrieval.py` inside their `aml-triage` repo, which is never committed to
    this one.
 
+### If you ask the tutor to do this step for you
+
+No shell command is needed — scikit-learn is already a dependency, and there is nothing to
+download (unlike lesson 002's PaySim CSV). Unlike the CSV, `typologies.json` has no licensing or
+download friction, so a doer can place both `aml-triage/data/typologies.json` and write
+`src/aml_triage/retrieval.py` by hand, without any `uv add` or external tool invocation.
+
 ## Checks
 
 Ask the learner to answer these in their own words before moving to lesson 009:
@@ -81,12 +88,10 @@ Ask the learner to answer these in their own words before moving to lesson 009:
   `TY-001` (Structuring / smurfing) first. Explain why — what words in the query match words in
   the typology's title or text?
 
-## Validation
+Then run the baked-in check:
 
-Run the baked-in test:
-
-```bash
-uv run pytest ../aml-tutor/tests/008_test_retrieval.py -v
+```sh
+uv run pytest ../aml-tutor/tests/008_test_retrieval.py
 ```
 
 All four tests must pass:
@@ -99,14 +104,16 @@ All four tests must pass:
   — a query about structuring ranks the structuring typology first.
 - `test_k_larger_than_corpus_returns_the_whole_corpus`: confirms edge case handling.
 
-Validation block in your `aml-triage` build script:
-
-```yaml
-- id: "008-typology-retrieval"
-  name: "Lesson 008 — typology retrieval"
-  command: |
-    uv run pytest ../aml-tutor/tests/008_test_retrieval.py -v
-  fail_message: "Lesson 008 tests failed. Check that retrieval.py exports the right functions."
+```json validation
+[
+  {
+    "id": "008-typology-retrieval",
+    "label": "Typology retrieval",
+    "command": "uv",
+    "args": ["run", "pytest", "../aml-tutor/tests/008_test_retrieval.py"],
+    "cwd": "../aml-triage"
+  }
+]
 ```
 
 ## Pressure test
@@ -116,10 +123,3 @@ typology ID was actually one of the top *k* results shown to the LLM. If `k` is 
 include the typology that actually matches a transaction, a well-formed decision citing that
 typology will be rejected — not because the decision was wrong, but because the model could only
 cite what it was shown. That dependency enforces that the `k` choice here has consequences.
-
-## Doer fallback note
-
-No shell command is needed — scikit-learn is already a dependency, and there is nothing to
-download (unlike lesson 002's PaySim CSV). Unlike the CSV, `typologies.json` has no licensing or
-download friction, so a doer can place both `aml-triage/data/typologies.json` and write
-`src/aml_triage/retrieval.py` by hand, without any `uv add` or external tool invocation.
