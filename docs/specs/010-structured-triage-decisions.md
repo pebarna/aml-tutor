@@ -68,11 +68,6 @@ cannot bypass the schema or sneak in unvetted typology IDs.
    This is the guard that stops a model from citing a real typology it was never shown, or a
    completely fabricated ID, or any typo thereof.
 
-4. **Do not commit scratch code.** The reference implementation lives in
-   `/tmp/aml-tutor-plan003-scratch/src/aml_triage/triage_schema.py`. Only the spec and the
-   baked-in test in this tutorial's git history. The learner writes their own `triage_schema.py`
-   inside their `aml-triage` repo, which is never committed to this one.
-
 ### If you ask the tutor to do this step for you
 
 No shell command is needed — this lesson has no new dependencies and makes no network calls. All

@@ -65,12 +65,6 @@ friction. Lesson 009 adds the embedding half this lesson deliberately leaves out
    Lesson 009's embedding retriever will import `_load_corpus`, `_documents`, and `_tfidf_scores`
    by name and call them in a different order to avoid duplicating this TF-IDF logic.
 
-4. **Do not commit scratch code.** The reference implementation lives in
-   `/tmp/aml-tutor-plan003-scratch/src/aml_triage/retrieval.py` (or wherever your plan's scratch
-   root points). Only the spec and the baked-in test in this tutorial's git history. The learner
-   writes their own `retrieval.py` inside their `aml-triage` repo, which is never committed to
-   this one.
-
 ### If you ask the tutor to do this step for you
 
 No shell command is needed — scikit-learn is already a dependency, and there is nothing to

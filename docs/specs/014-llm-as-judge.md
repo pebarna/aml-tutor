@@ -50,6 +50,8 @@ There is no separate way to reconstruct that list, and there is no human-label c
 function's job.
 
 ```python
+import os
+
 JUDGE_TOOL_SCHEMA = {
     "name": "submit_judge_verdict",
     "description": "Submit a verdict on whether a triage rationale is supported by its cited typologies.",
@@ -109,7 +111,7 @@ Run the baked-in check:
 uv run pytest ../aml-tutor/tests/014_test_llm_judge.py -v
 ```
 
-All two tests must pass:
+Both tests must pass:
 
 - `test_judge_forces_a_structured_tool_and_returns_its_verdict`: confirms the judge calls the model
   with the tool forced and parses the returned verdict correctly.

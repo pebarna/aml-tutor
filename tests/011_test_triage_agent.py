@@ -1,7 +1,10 @@
 """Baked-in check for lesson 011 — the end-to-end triage agent.
 
-Uses a fake client injected through triage()'s client= parameter. No network call, no
-ANTHROPIC_API_KEY needed to pass this test.
+Uses a fake client injected through triage()'s client= parameter. No call to a hosted LLM API,
+no ANTHROPIC_API_KEY needed to pass this test. (The default alpha=0.5 still routes through
+top_k_typologies_hybrid, so the embedding model lookup from lesson 009 may still touch the
+network on a cold cache — same one-time exception documented there, not a violation of this
+lesson's "no LLM API call" guarantee.)
 """
 from types import SimpleNamespace
 

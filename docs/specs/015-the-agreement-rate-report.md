@@ -26,7 +26,7 @@ Three separate rates, not one combined score, because they diagnose different up
    - `citation_present_rate`: the fraction of cases where `deterministic_scores[i]["citation_present"]` is `True`.
    - `judge_agreement_rate`: the fraction of cases where `judge_scores[i]["agrees"]` is `True`.
 
-   If the four lists have different lengths, raise `ValueError` with a message that shows the set of lengths seen.
+   If the four lists have different lengths, raise `ValueError` with a message that shows the set of lengths seen. If the lists are all empty (`n == 0`), also raise `ValueError` rather than dividing by zero — an empty eval set has nothing to report on.
 
 2. **Run the full pipeline over your hand-labeled cases (separate from pytest).** This is NOT part of the test suite and requires a real `ANTHROPIC_API_KEY`:
 
@@ -47,6 +47,8 @@ def report(cases, results, deterministic_scores, judge_scores):
         raise ValueError(f"mismatched list lengths: {lengths}")
 
     n = len(cases)
+    if n == 0:
+        raise ValueError("no cases to report on")
     return {
         "n_cases": n,
         "decision_agreement_rate": sum(d["decision_match"] for d in deterministic_scores) / n,
@@ -65,7 +67,7 @@ Ask the learner to answer these in their own words before moving on:
 Then run the baked-in check:
 
 ```sh
-PYTHONPATH=/tmp/aml-tutor-plan003-scratch/src python -m pytest ../aml-tutor/tests/015_test_agreement_report.py -v
+uv run pytest ../aml-tutor/tests/015_test_agreement_report.py -v
 ```
 
 Both tests must pass:
@@ -85,6 +87,12 @@ Both tests must pass:
 ]
 ```
 
+## Pressure test
+
+An aggregated report can hide failures. If your `judge_agreement_rate` is 0.7, that's useful, but it could mean the judge agrees on 70% of cases uniformly — or it could mean the judge is confident on easy cases (high agreement) and uncertain on edge cases (low agreement). The real diagnostic work starts after this lesson: read a sample of your results, especially the disagreements and the low-confidence cases, and ask whether the agent's reasoning is sound or whether you're seeing a systematic misunderstanding of a particular typology or a particular transaction pattern.
+
+This report is the *start* of the validation conversation, not the end.
+
 ## Closing note — end of Parts 2 and 3
 
 The project described in `aml-triage/SEED.md` is now complete end to end:
@@ -95,12 +103,6 @@ The project described in `aml-triage/SEED.md` is now complete end to end:
 Both follow the shape that SEED.md's Shipping section asks the eventual README/write-up to lead with: "problem → method → measured result." Your classifier solves the problem of detecting anomalies; your triage agent solves the problem of explaining them. Each now has a measured result — a number you can cite.
 
 **Note:** 16 hand-labeled cases (or whatever your eval set size) is a *floor*, not a ceiling or a target. SEED.md calls for 30–50 cases in a full production deployment; your eval set here is proof of concept, sufficient to validate the pipeline works end to end. A real model-validation document would expand this to dozens or hundreds of cases, stratified by decision type and transaction family, and reviewed by SMEs who know the typologies.
-
-## Pressure test
-
-An aggregated report can hide failures. If your `judge_agreement_rate` is 0.7, that's useful, but it could mean the judge agrees on 70% of cases uniformly — or it could mean the judge is confident on easy cases (high agreement) and uncertain on edge cases (low agreement). The real diagnostic work starts after this lesson: read a sample of your results, especially the disagreements and the low-confidence cases, and ask whether the agent's reasoning is sound or whether you're seeing a systematic misunderstanding of a particular typology or a particular transaction pattern.
-
-This report is the *start* of the validation conversation, not the end.
 
 ## Doer fallback note
 

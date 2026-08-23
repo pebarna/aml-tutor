@@ -67,12 +67,6 @@ infrastructure a compliance team already knows how to monitor and retain logs fr
      `sklearn.metrics.pairwise.cosine_similarity` (already imported for TF-IDF).
    - The existing `_load_corpus`, `_documents`, and `_tfidf_scores` helpers carry over unchanged.
 
-4. **Do not commit scratch code.** The reference implementation lives in
-   `/tmp/aml-tutor-plan003-scratch/src/aml_triage/retrieval.py` (or wherever your plan's scratch
-   root points). Only the spec and the baked-in test in this tutorial's git history. The learner
-   writes their own `retrieval.py` inside their `aml-triage` repo, which is never committed to
-   this one.
-
 ### If you ask the tutor to do this step for you
 
 The doer cannot run `uv add sentence-transformers` itself (shell access needed) or trigger the

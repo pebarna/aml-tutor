@@ -62,6 +62,9 @@ embeddings half of hybrid retrieval) and `anthropic` (lesson 011, the first real
   pass. This does not cover lesson 009's local embedding model: its first run downloads
   `sentence-transformers` weights and needs network for that one-time download, which is a
   different thing from calling a hosted LLM API and is documented as such in lesson 009's own spec.
+  Lesson 011's baked-in test shares this same exception at its default `alpha=0.5`, since it
+  routes through lesson 009's `top_k_typologies_hybrid` and can hit the same cold-cache download —
+  documented as such in lesson 011's own spec too.
 - New dependencies land in `aml-triage/pyproject.toml` in the lesson that first needs them, never
   earlier — same incremental-dependency discipline as lessons 001–007.
 - Every new spec follows `docs/specs/001-project-setup.md`'s four-part shape (Key concept /
@@ -1024,7 +1027,7 @@ def triage(transaction, classifier_score, *, client=None, k=3, corpus_path=None,
         messages=[{"role": "user", "content": prompt}],
     )
     tool_use = next(block for block in response.content if block.type == "tool_use")
-    result = parse_triage_decision(tool_use.input, known_ids)
+    result = dict(parse_triage_decision(tool_use.input, known_ids))
     result["retrieved"] = retrieved
     return result
 ```
@@ -1802,7 +1805,8 @@ git log --oneline -20
 - No baked-in test in `aml-tutor/tests/` requires `ANTHROPIC_API_KEY` or a call to a hosted LLM API
   to pass — every LLM-touching function is exercised through an injected fake client. (Lesson 009's
   test needs network once, for its local embedding model's first-run download — a documented,
-  narrower exception, not a violation of this bullet.)
+  narrower exception, not a violation of this bullet. Lesson 011's test shares that same narrower
+  exception at its default `alpha=0.5`, since it calls lesson 009's `top_k_typologies_hybrid`.)
 - Lesson 012's spec and baked-in test require the student to produce a real, hand-labeled
   `aml-triage/data/triage_eval_set.jsonl` with at least two distinct decision types used — the lesson
   itself ships a structure-only test and a candidate pool, not a generated scaffold; the labeled file

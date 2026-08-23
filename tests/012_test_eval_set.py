@@ -9,12 +9,16 @@ understanding (conversation), applied here to labeling quality instead.
 
 
 def test_eval_set_has_one_row_per_candidate(eval_candidates_path):
+    """Confirms the labeled file covers at least the whole candidate pool. Uses >=, not ==: the
+    spec explicitly encourages labeling more cases than the 16-candidate floor, so a larger file
+    is expected to pass too — only a *smaller* file (a candidate never labeled at all) should fail.
+    """
     from aml_triage.eval import load_eval_set
 
     cases = load_eval_set("data/triage_eval_set.jsonl")
     with open(eval_candidates_path) as f:
         candidate_count = sum(1 for _ in f)
-    assert len(cases) == candidate_count
+    assert len(cases) >= candidate_count
 
 
 def test_every_case_has_the_expected_keys():

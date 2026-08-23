@@ -61,12 +61,6 @@ artifact.
    deliverable — the more cases you label, and the more consistently you apply your own criteria,
    the more the agreement-rate metric in lesson 015 will actually mean something.
 
-4. **Do not commit scratch code.** The reference implementation of `load_eval_set` lives in
-   `/tmp/aml-tutor-plan003-scratch/src/aml_triage/eval.py`. Only the spec and the baked-in test in
-   this tutorial's git history. The learner writes their own `eval.py` — and their own labeled
-   `data/triage_eval_set.jsonl` — inside their `aml-triage` repo, which is never committed to this
-   one.
-
 ### If you ask the tutor to do this step for you
 
 There is **no doer fallback here.** Every other lesson in this tutorial has a fallback path where
@@ -102,8 +96,8 @@ uv run pytest ../aml-tutor/tests/012_test_eval_set.py -v
 
 All five tests must pass:
 
-- `test_eval_set_has_one_row_per_candidate`: confirms your labeled file has exactly as many rows as
-  the candidate pool it was built from.
+- `test_eval_set_has_one_row_per_candidate`: confirms your labeled file has at least as many rows as
+  the candidate pool it was built from — every candidate labeled, with room to label more.
 - `test_every_case_has_the_expected_keys`: confirms every row has exactly the four expected keys —
   `transaction`, `classifier_score`, `label_decision`, `label_note` — no more, no less.
 - `test_label_decisions_are_within_the_allowed_set`: confirms every `label_decision` is one of
