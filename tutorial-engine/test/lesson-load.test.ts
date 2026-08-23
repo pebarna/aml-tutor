@@ -54,7 +54,10 @@ describe("loadLesson", () => {
     const loaded = await loadLesson(realTutorialRoot);
     expect(loaded.definition.title).toBe("AML classifier tutorial");
     expect(loaded.progress[0]).toEqual({ id: "orientation", label: "Orientation", state: "done" });
-    expect(loaded.progress.slice(1).map((item) => item.id)).toEqual(["001", "002", "003", "004", "005", "006", "007"]);
+    expect(loaded.progress.slice(1).map((item) => item.id)).toEqual([
+      "001", "002", "003", "004", "005", "006", "007",
+      "008", "009", "010", "011", "012", "013", "014", "015"
+    ]);
     expect(loaded.definition.validationCommands).toEqual([
       { id: "001-project-setup", label: "Project setup", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/001_test_project_setup.py"], cwd: "../aml-triage" },
       { id: "002-load-and-explore-the-data", label: "Load and explore the data", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/002_test_data_loading.py"], cwd: "../aml-triage" },
@@ -62,7 +65,15 @@ describe("loadLesson", () => {
       { id: "004-feature-engineering", label: "Feature engineering", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/004_test_feature_engineering.py"], cwd: "../aml-triage" },
       { id: "005-class-imbalance", label: "Class imbalance", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/005_test_class_imbalance.py"], cwd: "../aml-triage" },
       { id: "006-train-the-baseline", label: "Train the baseline", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/006_test_train_baseline.py"], cwd: "../aml-triage" },
-      { id: "007-evaluation-and-threshold", label: "Evaluation and threshold", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/007_test_evaluation.py"], cwd: "../aml-triage" }
+      { id: "007-evaluation-and-threshold", label: "Evaluation and threshold", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/007_test_evaluation.py"], cwd: "../aml-triage" },
+      { id: "008-typology-retrieval", label: "Typology retrieval", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/008_test_retrieval.py"], cwd: "../aml-triage" },
+      { id: "009-hybrid-retrieval", label: "Hybrid retrieval", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/009_test_hybrid_retrieval.py"], cwd: "../aml-triage" },
+      { id: "010-structured-triage-decisions", label: "Structured triage decisions", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/010_test_structured_decisions.py", "-v"], cwd: "../aml-triage" },
+      { id: "011-the-triage-agent", label: "The end-to-end triage agent", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/011_test_triage_agent.py", "-v"], cwd: "../aml-triage" },
+      { id: "012-the-hand-labeled-eval-set", label: "The hand-labeled triage eval set", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/012_test_eval_set.py", "-v"], cwd: "../aml-triage" },
+      { id: "013-deterministic-triage-checks", label: "Deterministic triage checks", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/013_test_deterministic_checks.py", "-v"], cwd: "../aml-triage" },
+      { id: "014-llm-as-judge", label: "LLM-as-judge scoring", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/014_test_llm_judge.py", "-v"], cwd: "../aml-triage" },
+      { id: "015-the-agreement-rate-report", label: "The agreement-rate report", command: "uv", args: ["run", "pytest", "../aml-tutor/tests/015_test_agreement_report.py", "-v"], cwd: "../aml-triage" }
     ]);
   });
 });
