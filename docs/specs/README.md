@@ -21,3 +21,4 @@ local progress store, not in this table.
 | [007](007-evaluation-and-threshold.md) | Evaluation and threshold selection | Done |
 | [008](008-typology-retrieval.md) | Typology retrieval (keyword/TF-IDF half) | Done |
 | [009](009-hybrid-retrieval.md) | Hybrid retrieval (embeddings + blending) | Done |
+| [010](010-structured-triage-decisions.md) | Structured triage decisions | Done |
