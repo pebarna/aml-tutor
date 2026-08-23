@@ -93,8 +93,8 @@ Both tests must pass:
   {
     "id": "011-the-triage-agent",
     "label": "The end-to-end triage agent",
-    "command": "python",
-    "args": ["-m", "pytest", "../aml-tutor/tests/011_test_triage_agent.py", "-v"],
+    "command": "uv",
+    "args": ["run", "pytest", "../aml-tutor/tests/011_test_triage_agent.py", "-v"],
     "cwd": "../aml-triage"
   }
 ]
