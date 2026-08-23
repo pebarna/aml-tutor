@@ -52,7 +52,7 @@ describe("loadLesson", () => {
     // A guard against the loader and the real lesson content drifting apart —
     // not new curriculum content, which is Phase B/C's to write.
     const loaded = await loadLesson(realTutorialRoot);
-    expect(loaded.definition.title).toBe("AML classifier tutorial");
+    expect(loaded.definition.title).toBe("AML triage tutorial");
     expect(loaded.progress[0]).toEqual({ id: "orientation", label: "Orientation", state: "done" });
     expect(loaded.progress.slice(1).map((item) => item.id)).toEqual([
       "001", "002", "003", "004", "005", "006", "007",

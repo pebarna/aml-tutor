@@ -1,4 +1,4 @@
-# AML classifier tutorial lessons
+# AML triage tutorial lessons
 
 Fifteen lessons across the three phases `aml-triage/SEED.md` describes — grouped below as Part 1
 (the classifier), Part 2 (the triage agent), and Part 3 (the eval harness) for readability, but still

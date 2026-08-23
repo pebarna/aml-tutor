@@ -1,9 +1,11 @@
-# AML classifier tutorial
+# AML triage tutorial
 
-You're going to build a fraud-detection classifier from scratch: an XGBoost model trained on the
-PaySim mobile-money dataset, with a time-based split, engineered features, class-imbalance
-handling, and a chosen operating threshold backed by precision/recall/PR-AUC — Phase 1 of the
-project described in [`aml-triage/SEED.md`](../aml-triage/SEED.md).
+You're going to build an AML/fraud triage system from scratch, across all three phases described
+in [`aml-triage/SEED.md`](../aml-triage/SEED.md): a fraud-detection classifier (an XGBoost model
+trained on the PaySim mobile-money dataset, with a time-based split, engineered features,
+class-imbalance handling, and a chosen operating threshold backed by precision/recall/PR-AUC), a
+RAG-backed triage agent that drafts an escalate/monitor/close recommendation with a cited
+rationale, and an eval harness that measures both.
 
 This repo is the tutorial: engine, lesson content, and baked-in tests. Your actual code goes into
 a sibling repo, [`../aml-triage`](../aml-triage), which is the real deliverable — this repo never
