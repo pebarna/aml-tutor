@@ -26,3 +26,4 @@ local progress store, not in this table.
 | [012](012-the-hand-labeled-eval-set.md) | The hand-labeled triage eval set | Done |
 | [013](013-deterministic-triage-checks.md) | Deterministic triage checks | Done |
 | [014](014-llm-as-judge.md) | LLM-as-judge scoring | Done |
+| [015](015-the-agreement-rate-report.md) | The agreement-rate report | Done |
