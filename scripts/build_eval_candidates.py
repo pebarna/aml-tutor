@@ -7,10 +7,10 @@ This produces CANDIDATES, not labels -- lesson 012 has the student hand-label ea
 classifier_score is a documented stand-in (0.95/0.05 by the source row's isFraud flag), not a real
 Phase 1 model inference -- there is no persisted Phase 1 model artifact to reload here.
 """
-import csv
 import json
-import random
 from pathlib import Path
+
+import pandas as pd
 
 SEED = 20260823
 N_PER_CLASS = 8
@@ -24,40 +24,25 @@ TRANSACTION_COLUMNS = [
 
 
 def build() -> None:
-    # Read CSV and separate by fraud class
-    fraud_rows = []
-    non_fraud_rows = []
+    df = pd.read_csv(FIXTURE_PATH)
+    fraud = df[df["isFraud"] == 1]
+    non_fraud = df[df["isFraud"] == 0]
 
-    with FIXTURE_PATH.open() as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            is_fraud = int(row["isFraud"]) == 1
-            if is_fraud:
-                fraud_rows.append(row)
-            else:
-                non_fraud_rows.append(row)
-
-    # Validate we have enough rows in each class
-    if len(fraud_rows) < N_PER_CLASS or len(non_fraud_rows) < N_PER_CLASS:
+    if len(fraud) < N_PER_CLASS or len(non_fraud) < N_PER_CLASS:
         raise SystemExit(
-            f"need >= {N_PER_CLASS} rows in each class, found {len(fraud_rows)} fraud / "
-            f"{len(non_fraud_rows)} non-fraud; lower N_PER_CLASS or widen the source fixture, don't let "
+            f"need >= {N_PER_CLASS} rows in each class, found {len(fraud)} fraud / "
+            f"{len(non_fraud)} non-fraud; lower N_PER_CLASS or widen the source fixture, don't let "
             "this silently produce fewer than 16 candidates"
         )
 
-    # Sample with fixed seed
-    random.seed(SEED)
-    fraud_sample = random.sample(fraud_rows, N_PER_CLASS)
-    random.seed(SEED)
-    non_fraud_sample = random.sample(non_fraud_rows, N_PER_CLASS)
+    fraud_sample = fraud.sample(n=N_PER_CLASS, random_state=SEED)
+    non_fraud_sample = non_fraud.sample(n=N_PER_CLASS, random_state=SEED)
 
-    # Build output
     rows = []
-    for row in fraud_sample + non_fraud_sample:
-        is_fraud = int(row["isFraud"]) == 1
+    for _, row in pd.concat([fraud_sample, non_fraud_sample]).iterrows():
+        is_fraud = bool(row["isFraud"])
         rows.append({
-            "transaction": {col: float(row[col]) if col != "type" else row[col]
-                          for col in TRANSACTION_COLUMNS},
+            "transaction": {col: row[col] for col in TRANSACTION_COLUMNS},
             "classifier_score": 0.95 if is_fraud else 0.05,
         })
 
